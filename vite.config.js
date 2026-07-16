@@ -1,9 +1,8 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  // Relative base keeps the build portable: GitHub Pages project sites,
-  // user sites, or any static host serve it without rebuilding.
-  base: "./",
+  // הגדרת ה-base לשם המאגר בגיטהאב כדי שהנתיבים יעבדו נכון
+  base: "/mahshirot/",
   build: {
     outDir: "dist",
     target: "es2022",
