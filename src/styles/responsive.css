@@ -1,0 +1,137 @@
+/* ==========================================================================
+   רספונסיביות — נטען אחרון כדי לגבור על ברירות המחדל
+   ========================================================================== */
+
+/* --- דסקטופ צר --- */
+@media (max-width: 1180px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- טאבלט --- */
+@media (max-width: 900px) {
+  .header__inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 11px;
+  }
+
+  .brand {
+    order: 1;
+  }
+
+  .header__author {
+    order: 2;
+    align-items: flex-end;
+    text-align: end;
+  }
+
+  .header__controls {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .toasts {
+    top: auto;
+    bottom: calc(var(--log-panel-height, 300px) + 14px);
+  }
+}
+
+/* --- מובייל --- */
+@media (max-width: 680px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 0 13px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-row {
+    grid-template-columns: 1fr;
+  }
+
+  .brand__name {
+    font-size: 18px;
+  }
+
+  .theme-btn span {
+    display: none;
+  }
+
+  .theme-btn {
+    padding: 7px 10px;
+  }
+
+  .theme-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .logpanel {
+    height: min(var(--log-panel-height, 300px), 52vh);
+  }
+
+  .logpanel__prompt {
+    display: none;
+  }
+
+  .modal__foot {
+    flex-direction: column-reverse;
+  }
+
+  .modal__foot .btn {
+    width: 100%;
+  }
+
+  .catgrid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* טולטיפים לא שימושיים במגע — מבטלים כדי שלא ייתקעו */
+  [data-tip]::after {
+    display: none;
+  }
+}
+
+/* --- מסך נמוך --- */
+@media (max-height: 620px) {
+  .logpanel:not(.logpanel--collapsed) {
+    height: 210px !important;
+  }
+}
+
+/* --- הדפסה --- */
+@media print {
+  .logpanel,
+  .header__controls,
+  .toasts {
+    display: none !important;
+  }
+
+  #app {
+    padding-bottom: 0;
+  }
+}

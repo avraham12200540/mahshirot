@@ -1,0 +1,37 @@
+/* ==========================================================================
+   פריסה — מיכל ראשי ורשת הכרטיסיות
+   ========================================================================== */
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main {
+  padding-top: 18px;
+}
+
+/* רשת 4 כרטיסיות ראשיות — כמו בעיצוב המקור */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 18px;
+}
+
+/* אזור הפעולות מתחת לכרטיסיות */
+.actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 22px 0 16px;
+}
+
+.section-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

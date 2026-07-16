@@ -1,0 +1,214 @@
+/* ==========================================================================
+   כרטיסיות — כותרת עם קו הדגשה אדום, גוף עם כפתורי פקודות
+   ========================================================================== */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+}
+
+/* --- כותרת כרטיסייה --- */
+.card__head {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.card__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.card__title svg {
+  width: 17px;
+  height: 17px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* קו ההדגשה האדום הקצר מתחת לכותרת */
+.card__rule {
+  width: 34px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--red);
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.card__hint {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* --- סטטוס חיבור בתוך כרטיסיית החיבור --- */
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 11px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.status__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+
+.status--online .status__dot {
+  background: var(--green);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.status--fastboot .status__dot {
+  background: var(--orange);
+  box-shadow: 0 0 0 3px rgba(255, 140, 66, 0.2);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.status--error .status__dot {
+  background: var(--red);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.status--busy .status__dot {
+  background: var(--yellow);
+  animation: pulse-dot 0.9s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.42;
+  }
+}
+
+.status__text {
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status--online .status__text,
+.status--fastboot .status__text {
+  color: var(--text);
+}
+
+/* --- אזור גרירת קבצים --- */
+.dropzone {
+  border: 1.5px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: var(--surface-2);
+  transition: all 0.16s ease;
+  cursor: pointer;
+}
+
+.dropzone:hover,
+.dropzone--over {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.dropzone--loaded {
+  border-style: solid;
+  border-color: var(--green);
+}
+
+.dropzone__label {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.dropzone__name {
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.dropzone__file {
+  font-size: 11px;
+  color: var(--text-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
+  direction: ltr;
+  text-align: start;
+}
+
+.dropzone--loaded .dropzone__file {
+  color: var(--green);
+}
+
+/* --- שדה טקסט בתוך כרטיסייה --- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.field__input {
+  width: 100%;
+  padding: 9px 11px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  font-size: 13px;
+  transition: border-color 0.16s ease;
+}
+
+.field__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.field__input::placeholder {
+  color: var(--text-dim);
+  direction: ltr;
+  text-align: start;
+}

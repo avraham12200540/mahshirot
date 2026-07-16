@@ -1,0 +1,126 @@
+/* ==========================================================================
+   מנהל הקבצים — עץ קבצים במכשיר
+   ========================================================================== */
+
+.fm {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  min-height: 380px;
+}
+
+.fm__bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.fm__path {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 11px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 12.5px;
+  direction: ltr;
+  text-align: start;
+}
+
+.fm__path:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.fm__list {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--log-bg);
+  overflow-y: auto;
+  max-height: 400px;
+  min-height: 260px;
+}
+
+.fm__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 11px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12.5px;
+  transition: background-color 0.12s ease;
+  width: 100%;
+  text-align: start;
+}
+
+.fm__row:last-child {
+  border-bottom: none;
+}
+
+.fm__row:hover {
+  background: var(--surface-hover);
+}
+
+.fm__row-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: var(--text-dim);
+}
+
+.fm__row--dir .fm__row-icon {
+  color: var(--accent);
+}
+
+.fm__row-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  direction: ltr;
+  text-align: start;
+  font-family: "Cascadia Code", Consolas, monospace;
+  color: var(--log-text);
+}
+
+.fm__row--dir .fm__row-name {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.fm__row-size {
+  flex-shrink: 0;
+  color: var(--text-dim);
+  font-size: 11px;
+  direction: ltr;
+  min-width: 62px;
+  text-align: end;
+}
+
+.fm__row-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.14s ease;
+}
+
+.fm__row:hover .fm__row-actions {
+  opacity: 1;
+}
+
+.fm__empty,
+.fm__loading {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.fm__hint {
+  font-size: 11.5px;
+  color: var(--text-dim);
+}

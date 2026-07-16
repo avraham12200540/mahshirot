@@ -1,0 +1,146 @@
+/* ==========================================================================
+   שורת חיפוש + ניווט קטגוריות
+   ========================================================================== */
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0 4px;
+}
+
+/* --- שדה חיפוש --- */
+.search {
+  position: relative;
+  width: 100%;
+}
+
+.search__icon {
+  position: absolute;
+  inset-inline-start: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 17px;
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+.search__input {
+  width: 100%;
+  padding: 12px 42px 12px 42px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14.5px;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.search__input::placeholder {
+  color: var(--text-dim);
+}
+
+.search__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft), var(--glow);
+}
+
+.search__clear {
+  position: absolute;
+  inset-inline-end: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--text-dim);
+  background: var(--surface-2);
+}
+
+.search__clear:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.search__clear svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* --- טאבים של קטגוריות --- */
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  border-color: var(--accent-border);
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.tab--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+  box-shadow: var(--glow);
+}
+
+.tab--active:hover {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.tab--more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-style: dashed;
+}
+
+.tab--more svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* --- תוצאות חיפוש --- */
+.search-results {
+  margin-top: 14px;
+}
+
+.search-results__title {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.search-results__title strong {
+  color: var(--accent);
+}
+
+.search-results__empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-dim);
+  background: var(--surface);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+}

@@ -1,0 +1,117 @@
+/* ==========================================================================
+   ערכות נושא — כהה (ברירת מחדל), בהיר, ניאון
+   כל הצבעים מוגדרים כאן בלבד. שאר קבצי ה-CSS צורכים משתנים בלבד.
+   ========================================================================== */
+
+:root,
+:root[data-theme="dark"] {
+  --bg: #0b1220;
+  --bg-elevated: #0d1321;
+  --surface: #111a2e;
+  --surface-2: #16213a;
+  --surface-hover: #1b2947;
+
+  --border: #1e2c4a;
+  --border-strong: #2a3d63;
+
+  --text: #e6edf7;
+  --text-muted: #8fa3c4;
+  --text-dim: #5f739a;
+
+  --accent: #00d4ff;
+  --accent-soft: rgba(0, 212, 255, 0.12);
+  --accent-border: rgba(0, 212, 255, 0.4);
+  --accent-contrast: #04121c;
+
+  --violet: #7c5cff;
+  --orange: #ff8c42;
+  --green: #22c55e;
+  --red: #ef4444;
+  --yellow: #eab308;
+
+  --grad-brand: linear-gradient(90deg, #00d4ff 0%, #7c5cff 100%);
+  --grad-header: linear-gradient(90deg, #00d4ff 0%, #4a7cff 45%, #7c5cff 100%);
+
+  --log-bg: #070d18;
+  --log-text: #b9c9e4;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.28);
+  --shadow-pop: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --glow: none;
+
+  --radius: 14px;
+  --radius-sm: 9px;
+  --radius-pill: 999px;
+}
+
+:root[data-theme="light"] {
+  --bg: #eef2f8;
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f4f7fc;
+  --surface-hover: #e8eef8;
+
+  --border: #d6dfec;
+  --border-strong: #b9c7dc;
+
+  --text: #10192b;
+  --text-muted: #4d5c76;
+  --text-dim: #6b7a94;
+
+  --accent: #0086a8;
+  --accent-soft: rgba(0, 134, 168, 0.1);
+  --accent-border: rgba(0, 134, 168, 0.35);
+  --accent-contrast: #ffffff;
+
+  --violet: #6741e0;
+  --orange: #d9660f;
+  --green: #157f3c;
+  --red: #c62828;
+  --yellow: #9a6b00;
+
+  --grad-brand: linear-gradient(90deg, #0086a8 0%, #6741e0 100%);
+  --grad-header: linear-gradient(90deg, #0086a8 0%, #3f6ad8 45%, #6741e0 100%);
+
+  --log-bg: #0f1626;
+  --log-text: #cfdcf0;
+
+  --shadow-card: 0 1px 2px rgba(16, 25, 43, 0.06), 0 6px 18px rgba(16, 25, 43, 0.08);
+  --shadow-pop: 0 12px 40px rgba(16, 25, 43, 0.22);
+  --glow: none;
+}
+
+:root[data-theme="neon"] {
+  --bg: #05070f;
+  --bg-elevated: #070b16;
+  --surface: #0a1024;
+  --surface-2: #0e1730;
+  --surface-hover: #142046;
+
+  --border: #1d2f66;
+  --border-strong: #2f4a9e;
+
+  --text: #eafcff;
+  --text-muted: #7fd4e8;
+  --text-dim: #4f8fa8;
+
+  --accent: #00ffe1;
+  --accent-soft: rgba(0, 255, 225, 0.14);
+  --accent-border: rgba(0, 255, 225, 0.55);
+  --accent-contrast: #001a17;
+
+  --violet: #b14cff;
+  --orange: #ff9d2e;
+  --green: #2bff88;
+  --red: #ff3b6b;
+  --yellow: #ffe14c;
+
+  --grad-brand: linear-gradient(90deg, #00ffe1 0%, #b14cff 100%);
+  --grad-header: linear-gradient(90deg, #00ffe1 0%, #37a5ff 45%, #b14cff 100%);
+
+  --log-bg: #03050c;
+  --log-text: #9ff3e6;
+
+  --shadow-card: 0 0 0 1px rgba(0, 255, 225, 0.08), 0 8px 30px rgba(0, 255, 225, 0.08);
+  --shadow-pop: 0 0 60px rgba(0, 255, 225, 0.18);
+  --glow: 0 0 12px rgba(0, 255, 225, 0.45);
+}

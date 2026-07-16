@@ -1,0 +1,354 @@
+/* ==========================================================================
+   פאנל לוג דביק — טאבים, פלט, שורת פקודה ידנית
+   ========================================================================== */
+
+.logpanel {
+  position: fixed;
+  bottom: 0;
+  inset-inline: 0;
+  height: var(--log-panel-height, 300px);
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border-strong);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+  transition: height 0.22s ease;
+}
+
+.logpanel--collapsed {
+  height: 46px !important;
+}
+
+.logpanel--collapsed .logpanel__body,
+.logpanel--collapsed .logpanel__input-row {
+  display: none;
+}
+
+/* --- ידית שינוי גובה --- */
+.logpanel__grip {
+  position: absolute;
+  top: -3px;
+  inset-inline: 0;
+  height: 6px;
+  cursor: ns-resize;
+  z-index: 2;
+}
+
+.logpanel__grip:hover {
+  background: var(--accent-soft);
+}
+
+/* --- שורת הטאבים --- */
+.logpanel__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  height: 46px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.logpanel__tabs {
+  display: flex;
+  gap: 4px;
+  height: 100%;
+}
+
+.logtab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 13px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dim);
+  border-bottom: 2px solid transparent;
+  transition: color 0.14s ease, border-color 0.14s ease;
+}
+
+.logtab:hover {
+  color: var(--text-muted);
+}
+
+.logtab--active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.logtab svg {
+  width: 13px;
+  height: 13px;
+}
+
+.logtab__count {
+  background: var(--surface-2);
+  border-radius: 999px;
+  padding: 1px 6px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  min-width: 18px;
+  text-align: center;
+}
+
+.logtab--active .logtab__count {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.logpanel__spacer {
+  flex: 1;
+}
+
+.logpanel__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.iconbtn {
+  width: 29px;
+  height: 29px;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  color: var(--text-dim);
+  border: 1px solid transparent;
+  transition: all 0.14s ease;
+}
+
+.iconbtn:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+}
+
+.iconbtn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* --- גוף הלוג --- */
+.logpanel__body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--log-bg);
+  padding: 10px 14px;
+  font-family: "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+.logpanel__pane {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* --- שורת לוג --- */
+.logline {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 1px 0;
+  animation: line-in 0.18s ease;
+}
+
+@keyframes line-in {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+}
+
+.logline__time {
+  color: var(--text-dim);
+  flex-shrink: 0;
+  font-size: 11px;
+  padding-top: 1px;
+  opacity: 0.8;
+  direction: ltr;
+}
+
+.logline__badge {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0 5px;
+  min-width: 52px;
+  text-align: center;
+  line-height: 17px;
+  margin-top: 1px;
+}
+
+.logline__msg {
+  flex: 1;
+  min-width: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--log-text);
+}
+
+/* פלט המכשיר תמיד LTR — הוא חוזר באנגלית */
+.logline__msg--out {
+  direction: ltr;
+  text-align: start;
+  unicode-bidi: isolate;
+}
+
+/* הודעות מערכת בעברית */
+.logline--info .logline__badge {
+  background: rgba(0, 212, 255, 0.14);
+  color: var(--accent);
+}
+
+.logline--cmd .logline__badge {
+  background: rgba(124, 92, 255, 0.16);
+  color: var(--violet);
+}
+
+.logline--cmd .logline__msg {
+  color: var(--text);
+  font-weight: 700;
+  direction: ltr;
+  text-align: start;
+  unicode-bidi: isolate;
+}
+
+.logline--ok .logline__badge {
+  background: rgba(34, 197, 94, 0.16);
+  color: var(--green);
+}
+
+.logline--err .logline__badge {
+  background: rgba(239, 68, 68, 0.16);
+  color: var(--red);
+}
+
+.logline--err .logline__msg {
+  color: var(--red);
+}
+
+.logline--warn .logline__badge {
+  background: rgba(234, 179, 8, 0.16);
+  color: var(--yellow);
+}
+
+.logline--warn .logline__msg {
+  color: var(--yellow);
+}
+
+.logline--out .logline__badge {
+  background: var(--surface-2);
+  color: var(--text-dim);
+}
+
+.logpanel__empty {
+  color: var(--text-dim);
+  padding: 22px 4px;
+  text-align: center;
+  font-size: 12.5px;
+}
+
+/* --- טאב היסטוריית פקודות --- */
+.cmdhist {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cmdhist__item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 0.14s ease;
+  text-align: start;
+  width: 100%;
+}
+
+.cmdhist__item:hover {
+  border-color: var(--accent-border);
+}
+
+.cmdhist__time {
+  color: var(--text-dim);
+  font-size: 11px;
+  flex-shrink: 0;
+  direction: ltr;
+}
+
+.cmdhist__cmd {
+  flex: 1;
+  color: var(--text);
+  direction: ltr;
+  text-align: start;
+  unicode-bidi: isolate;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.cmdhist__replay {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.14s ease;
+}
+
+.cmdhist__item:hover .cmdhist__replay {
+  opacity: 1;
+}
+
+/* --- שורת קלט ידנית --- */
+.logpanel__input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+  flex-shrink: 0;
+}
+
+.logpanel__prompt {
+  color: var(--accent);
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 12.5px;
+  font-weight: 700;
+  flex-shrink: 0;
+  direction: ltr;
+}
+
+.logpanel__input {
+  flex: 1;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--log-bg);
+  color: var(--text);
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 12.5px;
+  direction: ltr;
+  text-align: start;
+  min-width: 0;
+}
+
+.logpanel__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.logpanel__input::placeholder {
+  color: var(--text-dim);
+}
