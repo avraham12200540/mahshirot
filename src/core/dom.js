@@ -93,3 +93,14 @@ export function debounce(fn, ms = 160) {
     t = setTimeout(() => fn(...args), ms);
   };
 }
+
+/**
+ * עוטף ערך במרכאות בודדות, בטוח להזרקה כארגומנט יחיד בתוך פקודת shell
+ * (POSIX sh, כמו זה שרץ במכשיר דרך `adb shell`). כל קלט חופשי שמגיע
+ * מהמשתמש (promptModal וכו') וממוזג לתוך מחרוזת פקודה חייב לעבור דרך זה,
+ * אחרת תו כמו `;` או `` ` `` יכול להריץ פקודה נוספת על המכשיר.
+ * @param {string} value
+ */
+export function shq(value) {
+  return `'${String(value).replace(/'/g, `'\\''`)}'`;
+}
