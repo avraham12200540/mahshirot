@@ -7,10 +7,9 @@
 import { ConcatBufferStream } from "@yume-chan/stream-extra";
 import { adbService } from "./adb-service.js";
 import { log } from "./logger.js";
-import { formatBytes } from "./dom.js";
+import { formatBytes, shq } from "./dom.js";
 
 const TMP_DIR = "/data/local/tmp";
-
 /**
  * מריץ פקודת shell ומחזיר את הפלט הבינארי (למשל screencap).
  * @param {string} command
@@ -33,7 +32,6 @@ export async function shellBinary(command) {
   // מכשירים ישנים: אין הפרדה, אבל screencap עדיין עובד
   return adb.subprocess.noneProtocol.spawnWait(command);
 }
-
 /** מוריד Blob למחשב של המשתמש. */
 export function downloadBlob(blob, filename) {
   const url = URL.createObjectURL(blob);
@@ -86,7 +84,6 @@ export async function screenRecord(seconds = 10) {
 
   await adbService.shell(`rm -f ${remote}`, { quiet: true });
 }
-
 /* ==========================================================================
    העברת קבצים
    ========================================================================== */
@@ -153,7 +150,6 @@ export async function listDir(path) {
     await sync.dispose();
   }
 }
-
 /* ==========================================================================
    התקנת אפליקציות
    ========================================================================== */
@@ -235,7 +231,7 @@ export async function installMany(files) {
  */
 export async function extractApk(packageName) {
   log.cmd(`adb shell pm path ${packageName}`);
-  const output = await adbService.shell(`pm path ${packageName}`, { quiet: true });
+  const output = await adbService.shell(`pm path ${shq(packageName)}`, { quiet: true });
   const match = output.match(/package:(\S+)/);
   if (!match) {
     throw new Error(`החבילה '${packageName}' לא נמצאה במכשיר.`);
@@ -246,7 +242,6 @@ export async function extractApk(packageName) {
   const blob = await pullFile(apkPath);
   downloadBlob(blob, `${packageName}.apk`);
 }
-
 /* ==========================================================================
    גיבוי
    ========================================================================== */
