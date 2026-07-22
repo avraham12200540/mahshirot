@@ -25,11 +25,16 @@ export function runCommandButton(command) {
     ].filter(Boolean),
   );
 
+  button.addEventListener("animationend", (e) => {
+    if (e.animationName === "btn-flash-ok") button.classList.remove("btn--flash-ok");
+  });
   button.addEventListener("click", async () => {
     if (button.classList.contains("btn--busy")) return;
     button.classList.add("btn--busy");
     try {
       await command.run();
+      // משוב חזותי מיידי על הכפתור עצמו — כדי שלא יהיה צריך להסתכל בלוג כדי לדעת שהפקודה רצה
+      button.classList.add("btn--flash-ok");
     } catch (error) {
       const message = describeError(error);
       log.err(message);
