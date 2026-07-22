@@ -19,7 +19,6 @@ const QUICK_TABS = [
   { id: "cpu", name: "מעבד" },
   { id: "fastbootAdv", name: "Fastboot" },
 ];
-
 export function createToolbar({ onScrollToCards }) {
   const input = el("input.search__input", {
     type: "search",
@@ -89,9 +88,11 @@ export function createToolbar({ onScrollToCards }) {
     }
 
     results.append(
-      el("div.search-results__title", {
-        html: `נמצאו <strong>${matches.length}</strong> פקודות עבור "${query}"`,
-      }),
+      el("div.search-results__title", {}, [
+        document.createTextNode("נמצאו "),
+        el("strong", { text: String(matches.length) }),
+        document.createTextNode(` פקודות עבור "${query}"`),
+      ]),
     );
 
     // מקבצים לפי קטגוריה כדי שהתוצאות יישארו קריאות
