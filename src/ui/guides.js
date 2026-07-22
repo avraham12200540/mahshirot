@@ -14,6 +14,7 @@ const PLATFORM_TOOLS_URL = "https://developer.android.com/tools/releases/platfor
 const YUME_CHAN_URL = "https://github.com/yume-chan/ya-webadb";
 const FASTBOOT_JS_URL = "https://github.com/kdrag0n/fastboot.js";
 const WEBUSB_URL = "https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API";
+
 /** בונה רשימת שלבים ממוספרת. */
 function steps(items) {
   return el(
@@ -239,7 +240,7 @@ export function openAboutModal() {
 
     el("h3", { text: "קרדיטים", style: { fontSize: "15px", marginTop: "14px", marginBottom: "6px" } }),
     el("p", {
-      text: "תודה מיוחדת לפב״ב הראשון, ולעוד הרבה משתמשים שתרמו פקודות, תיקונים ומשוב שעזרו לאתר להגיע למקום שהוא נמצא בו היום.",
+      html: `תודה מיוחדת ל<strong>פב״ב הראשון</strong>, ולעוד הרבה משתמשים שתרמו פקודות, תיקונים ומשוב שעזרו לאתר להגיע למקום שהוא נמצא בו היום. את מדריך הפקודות המלא שלו אפשר לראות בהמשך העמוד, בקטע ${link("#pavv-guide", "״מדריך הפקודות המלא״")}.`,
     }),
   ]);
 
