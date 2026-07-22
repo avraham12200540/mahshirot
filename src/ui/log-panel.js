@@ -49,12 +49,11 @@ export function createLogPanel() {
     document.createTextNode("פקודות ADB"),
     histCount,
   ]);
-
-  const collapseBtn = el("button.iconbtn", {
+    const collapseBtn = el("button.iconbtn", {
     html: icon("chevronDown", 14),
     "aria-label": "הסתר פאנל",
     "data-tip": "הסתר/הצג את הפאנל",
-  });
+    });
 
   const panel = el("aside.logpanel", { "aria-label": "פאנל לוג" }, [
     el("div.logpanel__grip", { "aria-hidden": "true" }),
@@ -62,12 +61,6 @@ export function createLogPanel() {
       el("div.logpanel__tabs", {}, [tabLog, tabHist]),
       el("div.logpanel__spacer"),
       el("div.logpanel__actions", {}, [
-        el("button.iconbtn", {
-          html: icon("download", 14),
-          "aria-label": "שמור לוג",
-          "data-tip": "שמור את הלוג כקובץ טקסט",
-          on: { click: saveLog },
-        }),
         el("button.iconbtn", {
           html: icon("copy", 14),
           "aria-label": "העתק לוג",
@@ -199,17 +192,6 @@ export function createLogPanel() {
     } catch {
       log.err("ההעתקה נכשלה — הדפדפן חסם גישה ללוח.");
     }
-  }
-
-  function saveLog() {
-    const blob = new Blob([log.toText()], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = el("a", { href: url, download: "mahshirot-log.txt" });
-    document.body.append(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 5000);
-    log.ok("הלוג נשמר כקובץ.");
   }
 
   /* ---------- קלט ידני + היסטוריה ---------- */
