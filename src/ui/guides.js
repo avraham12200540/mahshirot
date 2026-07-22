@@ -14,7 +14,6 @@ const PLATFORM_TOOLS_URL = "https://developer.android.com/tools/releases/platfor
 const YUME_CHAN_URL = "https://github.com/yume-chan/ya-webadb";
 const FASTBOOT_JS_URL = "https://github.com/kdrag0n/fastboot.js";
 const WEBUSB_URL = "https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API";
-
 /** בונה רשימת שלבים ממוספרת. */
 function steps(items) {
   return el(
@@ -233,9 +232,14 @@ export function openAboutModal() {
 
     el("h3", { text: "יצירת קשר ומשוב", style: { fontSize: "15px", marginTop: "14px", marginBottom: "6px" } }),
     el("p", {
-      html: `נבנה על ידי <strong>שלמה רביב</strong> — מפתח תוכנות ואפליקציות. מבצע צריבות גרסאות למכשירים ונגנים בתשלום ועוד.<br>
+      html: `נבנה על ידי <strong>${link("https://shlomoraviv.github.io/Raviv-Digital/", "שלמה רביב — רביב דיגיטל")}</strong> — מפתח תוכנות ואפליקציות. מבצע צריבות גרסאות למכשירים ונגנים בתשלום ועוד.<br>
       מייל: ${link("mailto:0556798858b@gmail.com", "0556798858b@gmail.com")}<br>
       אתר: ${link("https://shlomoraviv.github.io/Raviv-Digital/", "shlomoraviv.github.io/Raviv-Digital")}`,
+    }),
+
+    el("h3", { text: "קרדיטים", style: { fontSize: "15px", marginTop: "14px", marginBottom: "6px" } }),
+    el("p", {
+      text: "תודה מיוחדת לפב״ב הראשון, ולעוד הרבה משתמשים שתרמו פקודות, תיקונים ומשוב שעזרו לאתר להגיע למקום שהוא נמצא בו היום.",
     }),
   ]);
 
