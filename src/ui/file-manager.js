@@ -2,7 +2,7 @@
  * מנהל הקבצים — עץ קבצים במכשיר, מבוסס adb sync (ls / pull / push).
  */
 
-import { el, clear, svg, formatBytes } from "../core/dom.js";
+import { el, clear, svg, formatBytes, shq } from "../core/dom.js";
 import { icon } from "./icons.js";
 import { openModal, confirmModal, promptModal } from "./modal.js";
 import { log, describeError } from "../core/logger.js";
@@ -10,7 +10,6 @@ import { adbService } from "../core/adb-service.js";
 import * as ops from "../core/adb-ops.js";
 import { pickFiles } from "../data/commands.js";
 import { toastErr, toastOk } from "./toast.js";
-
 // LinuxFileType.Directory מ-@yume-chan/adb — בודקים דרך המסכה כדי לא לייבא עוד סמל
 const S_IFMT = 0o170000;
 const S_IFDIR = 0o040000;
@@ -213,7 +212,7 @@ export function openFileManager() {
     if (!ok) return;
 
     try {
-      await adbService.shell(`rm -rf "${full}"`);
+      await adbService.shell(`rm -rf ${shq(full)}`);
       toastOk("נמחק.");
       await navigate(currentPath);
     } catch (error) {
