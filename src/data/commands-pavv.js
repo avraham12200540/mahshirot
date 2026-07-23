@@ -11,6 +11,7 @@ import * as ops from "../core/adb-ops.js";
 import { log } from "../core/logger.js";
 import { promptModal, riskModal } from "../ui/modal.js";
 import { shq } from "../core/dom.js";
+import { getInjection } from "../core/injection.js";
 
 const sh = (command) => () => adbService.shell(command);
 const fb = (command) => () => fastbootService.runCommand(command);
@@ -97,7 +98,8 @@ function shellRun(template, prompts) {
   return async () => {
     let command = template;
     for (const p of prompts) {
-      const value = await promptModal({ title: p.title, label: p.label, hint: p.hint });
+      const injected = p.token === "XXX" ? getInjection() : "";
+      const value = injected || (await promptModal({ title: p.title, label: p.label, hint: p.hint }));
       if (!value) {
         log.warn("בוטל — לא הוזן ערך.");
         return;
@@ -113,7 +115,8 @@ function fastbootRun(template, prompts) {
   return async () => {
     let command = template;
     for (const p of prompts) {
-      const value = await promptModal({ title: p.title, label: p.label, hint: p.hint });
+      const injected = p.token === "XXX" ? getInjection() : "";
+      const value = injected || (await promptModal({ title: p.title, label: p.label, hint: p.hint }));
       if (!value) {
         log.warn("בוטל — לא הוזן ערך.");
         return;
