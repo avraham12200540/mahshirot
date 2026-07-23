@@ -28,7 +28,7 @@ export function openCategoryModal(categoryId) {
     }),
     el(
       "div",
-      { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: "8px" } },
+      { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(210px, 1fr))", gap: "10px" } },
       category.commands.map((c) => runCommandButton(c)),
     ),
   ]);
