@@ -21,6 +21,7 @@ import * as ops from "../core/adb-ops.js";
 import { log } from "../core/logger.js";
 import { promptModal, riskModal, confirmModal } from "../ui/modal.js";
 import { shq } from "../core/dom.js";
+import { getInjection } from "../core/injection.js";
 import { SplitStringStream, TextDecoderStream } from "@yume-chan/stream-extra";
 import { PAVV_CATEGORIES } from "./commands-pavv.js";
 
@@ -34,13 +35,16 @@ const sh = (command) => () => adbService.shell(command);
 /** יוצר run שמריץ פקודת fastboot גולמית. */
 const fb = (command) => () => fastbootService.runCommand(command);
 
-/** שואל שם חבילה. */
+/** שואל שם חבילה. אם יש ערך מוזרק פעיל — משתמש בו ישירות בלי לשאול. */
 async function askPackage(title = "שם חבילה") {
+  const injected = getInjection();
+  if (injected) return injected;
+
   return promptModal({
     title,
     label: "שם חבילה (package name)",
     placeholder: "com.whatsapp",
-    hint: "אפשר למצוא את השם המדויק דרך 'רשימת אפליקציות משתמש'.",
+    hint: "אפשר למצוא את השם המדויק דרך 'רשימת אפליקציות משתמש'. אפשר גם להזריק חבילה קבועה מסרגל הכלים.",
   });
 }
 
