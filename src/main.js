@@ -17,7 +17,6 @@ import "./styles/modal.css";
 import "./styles/banner.css";
 import "./styles/file-manager.css";
 import "./styles/footer.css";
-import "./styles/pavv-section.css";
 import "./styles/responsive.css";
 
 import { el, svg, $ } from "./core/dom.js";
@@ -32,7 +31,6 @@ import { createToolbar } from "./ui/toolbar.js";
 import { createMainCards } from "./ui/cards.js";
 import { createLogPanel } from "./ui/log-panel.js";
 import { createFooter } from "./ui/footer.js";
-import { createPavvSection } from "./ui/pavv-section.js";
 import { openSourcesGuide, openAboutModal, openDebuggingGuide } from "./ui/guides.js";
 
 /* ==========================================================================
@@ -122,15 +120,7 @@ function mount() {
   });
 
   const main = el("main.main", {}, [
-    el("div.container", {}, [
-      browserBanner(),
-      toolbar,
-      results,
-      cards,
-      actionsRow(),
-      pinnedWarning(),
-      createPavvSection(),
-    ]),
+    el("div.container", {}, [browserBanner(), toolbar, results, cards, actionsRow(), pinnedWarning()]),
   ]);
 
   const { panel } = createLogPanel();
