@@ -85,6 +85,14 @@ function copyRun(text, note) {
   };
 }
 
+/** פותח קישור למדריך חיצוני בטאב חדש. */
+function openLinkRun(url, note) {
+  return async () => {
+    window.open(url, "_blank", "noopener,noreferrer");
+    if (note) log.info(note);
+  };
+}
+
 function shellRun(template, prompts) {
   return async () => {
     let command = template;
@@ -2456,6 +2464,43 @@ export const PAVV_CATEGORIES = [
         cmd: "adb shell dumpsys batterystats --reset",
         mode: "adb",
         run: sh("dumpsys batterystats --reset"),
+      },
+    ],
+  },
+  {
+    id: "pavv-11",
+    name: "מדריכי חסימות MDM (פב״ב הראשון)",
+    icon: "book",
+    commands: [
+      {
+        id: "pavv-11-1",
+        label: "A Bloq (אייבלוק) — מדריך מלא",
+        tip: "אפליקציית חסימה מבוססת Device Owner (MDM), חבילה: com.secureguard.mdm. לחיצה פותחת את המדריך המלא להורדה, התקנה והגדרה באתר מתמחים טופ.",
+        cmd: "com.secureguard.mdm",
+        mode: "adb",
+        variant: "outline",
+        run: openLinkRun(
+          "https://mitmachim.top/topic/84759/%D7%9C%D7%94%D7%95%D7%A8%D7%93%D7%94-%D7%90%D7%A4%D7%9C%D7%99%D7%A7%D7%A6%D7%99%D7%AA-%D7%97%D7%A1%D7%99%D7%9E%D7%94-%D7%9C%D7%90%D7%A0%D7%93%D7%A8%D7%95%D7%90%D7%99%D7%93-%D7%90%D7%99%D7%99%D7%91%D7%9C%D7%95%D7%A7-abloq-%D7%9E%D7%91%D7%95%D7%A1%D7%A1-%D7%A2%D7%9C-mdm-%D7%91%D7%98%D7%90-0.5/3220",
+          "נפתח מדריך ה-A Bloq באתר מתמחים טופ.",
+        ),
+      },
+      {
+        id: "pavv-11-2",
+        label: "K-Droid (קיידרואיד) — מדריך",
+        tip: "אפליקציית חסימה נוספת מבוססת Device Owner (MDM), חבילה: com.kdroid.filter. קישור למדריך המלא באתר מתמחים טופ עוד לא סופק — הועתק שם החבילה בינתיים.",
+        cmd: "com.kdroid.filter",
+        mode: "adb",
+        variant: "outline",
+        run: copyRun("com.kdroid.filter", "שם החבילה של K-Droid הועתק ללוח. קישור למדריך המלא יתווסף כשיהיה זמין."),
+      },
+      {
+        id: "pavv-11-3",
+        label: "SystemLock — חסימה מובנית במכשירים סיניים",
+        tip: "אפליקציית חסימה שמגיעה מותקנת מראש בחלק מהמכשירים הסיניים הזולים ('כשרים'). פקודות להשבתה, הסרה ומחיקה מלאה שלה נמצאות בקטגוריית 'Root ומתקדמים'.",
+        cmd: "com.android.systemlock",
+        mode: "adb",
+        variant: "outline",
+        run: copyRun("com.android.systemlock", "שם החבילה של SystemLock הועתק ללוח. פקודות ההסרה נמצאות בקטגוריית Root ומתקדמים."),
       },
     ],
   },
