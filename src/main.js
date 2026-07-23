@@ -17,6 +17,7 @@ import "./styles/modal.css";
 import "./styles/banner.css";
 import "./styles/file-manager.css";
 import "./styles/footer.css";
+import "./styles/ai-chat.css";
 import "./styles/responsive.css";
 
 import { el, svg, $ } from "./core/dom.js";
@@ -26,7 +27,7 @@ import { isWebUsbSupported, isChromiumBased, browserName } from "./core/usb.js";
 import { adbService } from "./core/adb-service.js";
 import { fastbootService } from "./core/fastboot-service.js";
 
-import { createHeader, applyTheme, currentTheme } from "./ui/header.js";
+import { createHeader, applyTheme, currentTheme, applyLayout, isWideLayout } from "./ui/header.js";
 import { createToolbar } from "./ui/toolbar.js";
 import { createMainCards } from "./ui/cards.js";
 import { createLogPanel } from "./ui/log-panel.js";
@@ -110,6 +111,7 @@ function pinnedWarning() {
 
 function mount() {
   applyTheme(currentTheme());
+  applyLayout(isWideLayout());
 
   const app = $("#app");
 
