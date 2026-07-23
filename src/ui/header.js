@@ -5,6 +5,7 @@
 import { el, svg } from "../core/dom.js";
 import { icon } from "./icons.js";
 import { openAboutModal } from "./guides.js";
+import { openAiChat } from "./ai-chat.js";
 
 const THEME_KEY = "mahshirot:theme";
 const THEMES = [
@@ -12,6 +13,8 @@ const THEMES = [
   { id: "light", label: "בהיר", icon: "sun" },
   { id: "neon", label: "ניאון", icon: "zap" },
 ];
+
+const LAYOUT_KEY = "mahshirot:layout";
 
 /** מחזיר את ערכת הנושא השמורה. */
 export function currentTheme() {
@@ -27,6 +30,17 @@ export function applyTheme(id) {
     const colors = { dark: "#0b1220", light: "#eef2f8", neon: "#05070f" };
     meta.content = colors[id] ?? "#0b1220";
   }
+}
+
+/** מחזירה true אם פריסה רחבה פעילה. */
+export function isWideLayout() {
+  return localStorage.getItem(LAYOUT_KEY) === "wide";
+}
+
+/** מחילה פריסה רחבה/רגילה. */
+export function applyLayout(wide) {
+  document.documentElement.dataset.layout = wide ? "wide" : "normal";
+  localStorage.setItem(LAYOUT_KEY, wide ? "wide" : "normal");
 }
 
 export function createHeader() {
@@ -63,6 +77,28 @@ export function createHeader() {
   );
   aboutBtn.addEventListener("click", () => openAboutModal());
 
+  const layoutBtn = el(
+    "button.theme-btn",
+    {
+      "aria-pressed": String(isWideLayout()),
+      "data-tip": "החלף בין פריסה רגילה לפריסה רחבה יותר",
+    },
+    [svg(icon(isWideLayout() ? "minimize" : "maximize", 14)), el("span", { text: "פריסה רחבה" })],
+  );
+  layoutBtn.addEventListener("click", () => {
+    const next = !isWideLayout();
+    applyLayout(next);
+    layoutBtn.setAttribute("aria-pressed", String(next));
+    layoutBtn.replaceChildren(svg(icon(next ? "minimize" : "maximize", 14)), el("span", { text: "פריסה רחבה" }));
+  });
+
+  const aiBtn = el(
+    "button.theme-btn",
+    { "data-tip": "צ'אט עם AI (Gemini) — עם מפתח API אישי וחינמי מ-Google AI Studio" },
+    [svg(icon("send", 14)), el("span", { text: "צ'אט עם AI" })],
+  );
+  aiBtn.addEventListener("click", () => openAiChat());
+
   return el("header.header", {}, [
     el("div.container", {}, [
       el("div.header__inner", {}, [
@@ -76,7 +112,7 @@ export function createHeader() {
         ]),
 
         // כפתורי מצב
-        el("div.header__controls", {}, [aboutBtn, ...buttons]),
+        el("div.header__controls", {}, [aboutBtn, aiBtn, layoutBtn, ...buttons]),
 
         // קרדיט מפתח
         el("div.header__author", {}, [
