@@ -1,0 +1,87 @@
+/* ==========================================================================
+   צ'אט עם AI (Gemini / Google AI Studio)
+   ========================================================================== */
+
+.aichat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 320px;
+}
+
+.aichat__keyrow .card__hint a {
+  color: var(--accent);
+}
+
+.aichat__messages {
+  flex: 1;
+  min-height: 220px;
+  max-height: 50vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.aichat__msg {
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  line-height: 1.55;
+  max-width: 82%;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.aichat__msg--user {
+  align-self: flex-end;
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.aichat__msg--model {
+  align-self: flex-start;
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.aichat__msg--thinking {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.aichat__msg--error {
+  align-self: stretch;
+  max-width: 100%;
+  background: rgba(220, 38, 38, 0.12);
+  color: var(--red);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+.aichat__inputrow {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.aichat__input {
+  flex: 1;
+  resize: vertical;
+  min-height: 44px;
+  max-height: 160px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13.5px;
+  font-family: inherit;
+}
+
+.aichat__input::placeholder {
+  color: var(--text-dim);
+}
