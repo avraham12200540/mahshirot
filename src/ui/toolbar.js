@@ -10,6 +10,7 @@ import { icon } from "./icons.js";
 import { CATEGORIES, searchCommands } from "../data/commands.js";
 import { openCategoryModal, openCategoryPicker } from "./categories.js";
 import { runCommandButton } from "./command-button.js";
+import { createInjectionBar } from "./injection-bar.js";
 
 /** הקטגוריות שמופיעות כטאבים מהירים. השאר תחת "עוד קטגוריות". */
 const QUICK_TABS = [
@@ -19,6 +20,7 @@ const QUICK_TABS = [
   { id: "cpu", name: "מעבד" },
   { id: "fastbootAdv", name: "Fastboot" },
 ];
+
 export function createToolbar({ onScrollToCards }) {
   const input = el("input.search__input", {
     type: "search",
@@ -150,6 +152,7 @@ export function createToolbar({ onScrollToCards }) {
   const toolbar = el("div.toolbar", {}, [
     el("div.search", {}, [svg(icon("search", 17)), input, clearBtn]),
     tabs,
+    createInjectionBar(),
   ]);
 
   // מוסיפים את class האייקון ידנית (svg() מחזיר אלמנט בלי מחלקה)
